@@ -2398,9 +2398,9 @@ private:
 	{
 		if (op2.isMEM()) {
 			if (!op1.isREG()) XBYAK_THROW(ERR_BAD_COMBINATION)
-			opMR(op2.getAddress(), op1.getReg(), 0, code | 2);
+			opMR(op2.getAddress(), op1.getReg(), T_ALLOW_DIFF_SIZE, code | 2);
 		} else {
-			opRO(static_cast<const Reg&>(op2), op1, 0, code, op1.getKind() == op2.getKind());
+			opRO(static_cast<const Reg&>(op2), op1, T_ALLOW_DIFF_SIZE, code, op1.getKind() == op2.getKind());
 		}
 	}
 	bool isInDisp16(uint32_t x) const { return 0xFFFF8000 <= x || x <= 0x7FFF; }
